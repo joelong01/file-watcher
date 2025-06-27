@@ -43,7 +43,8 @@ solutions:
 All code and documentation should adhere to an 80-character line length limit:
 
 - Rust code: Configure `rustfmt` with `max_width = 80`
-- Markdown files: Break lines at 80 characters for better readability
+- Markdown files: Line length limit disabled (MD013: false) to allow natural
+  text flow based on editor window width for better readability
 - Comments: Keep inline and block comments within 80 characters
 - Configuration files: Format JSON, TOML, and other config files with 80-char
   limit
@@ -107,3 +108,20 @@ practices:
   rather than repeating the same action
 - For potentially destructive operations, default to requiring explicit
   approval
+
+## Rule 9: Persistent Environment Configuration
+
+All environment changes must be made in a way that persists across container
+rebuilds and resets:
+
+- Permission fixes should be scripted in the Dockerfile or postCreateCommand
+- Software installations should be added to the Dockerfile, not done manually
+- Configuration changes should be committed to devcontainer.json or related
+  config files
+- The postCreateCommand should handle authentication setup (e.g., gh auth login)
+- Never make manual changes that won't survive a container rebuild
+- Document any required manual steps in README.md if they cannot be automated
+- Environment setup should be idempotent and repeatable across all team members
+
+This ensures consistent development environments and prevents "works on my
+machine" issues.

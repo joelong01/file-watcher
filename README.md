@@ -47,6 +47,23 @@ environments across different machines.
 2. Open the folder in VS Code
 3. VS Code will detect the devcontainer and prompt you to "Reopen in Container"
 4. Click "Reopen in Container" and wait for the container to build
+5. After the container starts, run `gh auth login --web` to authenticate with GitHub
+
+### First-Time Setup
+
+The devcontainer automatically handles:
+
+- Rust toolchain installation with clippy and rustfmt
+- eBPF development libraries and tools
+- GitHub CLI installation
+- Cargo permission configuration
+- VS Code extensions and settings
+
+After the container is ready, authenticate with GitHub:
+
+```bash
+gh auth login --web
+```
 
 ### Development Tools Included
 
@@ -106,6 +123,19 @@ system operations at the kernel level. This approach provides:
 - **System-wide visibility**: Monitors all processes, not just children
 - **Real-time monitoring**: Immediate notification of file operations
 - **Selective filtering**: Efficient filtering at the kernel level
+
+## Environment Management
+
+This project follows strict environment persistence rules to ensure consistent
+development across all team members:
+
+- All environment changes are scripted in the devcontainer configuration
+- No manual changes that won't survive container rebuilds
+- Permission fixes and software installations are automated
+- GitHub authentication setup is documented but requires manual action
+
+If you encounter environment issues, rebuild the devcontainer rather than
+making manual fixes. This ensures all team members have the same setup.
 
 ## Contributing
 

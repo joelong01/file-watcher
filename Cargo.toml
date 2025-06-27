@@ -1,0 +1,58 @@
+[package]
+name = "fw"
+version = "0.1.0"
+edition = "2021"
+description = "A command-line file monitoring tool using eBPF"
+authors = ["joelong01"]
+license = "MIT"
+repository = "https://github.com/joelong01/file-watcher"
+readme = "README.md"
+
+[[bin]]
+name = "fw"
+path = "src/main.rs"
+
+[dependencies]
+# CLI argument parsing
+clap = { version = "4.4", features = ["derive", "cargo"] }
+
+# eBPF support
+libbpf-rs = "0.22"
+libbpf-sys = "1.3"
+
+# Async runtime for handling events
+tokio = { version = "1.0", features = ["full"] }
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Logging
+env_logger = "0.10"
+log = "0.4"
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Signal handling for Ctrl+C
+signal-hook = "0.3"
+signal-hook-tokio = { version = "0.3", features = ["futures-v0_3"] }
+
+# System utilities
+nix = { version = "0.27", features = ["user"] }
+
+[dev-dependencies]
+# Testing utilities
+tempfile = "3.8"
+
+[profile.release]
+# Optimize for performance in release builds
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[profile.dev]
+# Faster compilation in debug mode
+opt-level = 0
+debug = true

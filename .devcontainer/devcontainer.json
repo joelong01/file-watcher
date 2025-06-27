@@ -50,7 +50,8 @@
                 },
                 "markdownlint.config": {
                     "MD041": false,
-                    "MD033": false
+                    "MD033": false,
+                    "MD013": false
                 },
                 "files.trimTrailingWhitespace": true,
                 "files.insertFinalNewline": true,
@@ -58,7 +59,7 @@
             }
         }
     },
-    "postCreateCommand": "rustup component add clippy rustfmt && cargo --version",
+    "postCreateCommand": ".devcontainer/setup.sh",
     "remoteUser": "vscode",
     "mounts": [
         "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"

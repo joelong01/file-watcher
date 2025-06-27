@@ -126,6 +126,25 @@
             "problemMatcher": [
                 "$rustc"
             ]
+        },
+        {
+            "label": "Spell Check",
+            "type": "shell",
+            "command": "cspell",
+            "args": [
+                "--config",
+                "cspell.json",
+                "**/*.{md,rs,toml,json,sh}"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            }
         }
     ]
 }

@@ -17,9 +17,7 @@
     "markdownlint.config": {
         "MD041": false,
         "MD033": false,
-        "MD013": {
-            "line_length": 80
-        }
+        "MD013": false
     },
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
@@ -30,5 +28,14 @@
     },
     "files.watcherExclude": {
         "**/target/**": true
-    }
+    },
+    "cSpell.customDictionaries": {
+        "project-words": {
+            "name": "project-words",
+            "path": "${workspaceRoot}/cspell.json",
+            "addWords": true,
+            "scope": "workspace"
+        }
+    },
+    "cSpell.enabled": true
 }

@@ -7,22 +7,24 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install eBPF development dependencies
 RUN apt-get update && apt-get -y install --no-install-recommends \
     # eBPF and kernel development
-    linux-headers-generic \
     libbpf-dev \
     bpftrace \
     bpfcc-tools \
     # Build tools
     clang \
     llvm \
-    gcc-multilib \
+    gcc \
+    libc6-dev \
     # System monitoring tools
     strace \
-    ltrace \
     tcpdump \
     # Development utilities
     vim \
     jq \
     tree \
+    curl \
+    wget \
+    procps \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

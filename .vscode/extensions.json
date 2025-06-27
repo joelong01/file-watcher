@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+        "rust-lang.rust-analyzer",
+        "vadimcn.vscode-lldb",
+        "serayuzgur.crates",
+        "tamasfe.even-better-toml",
+        "ms-vscode.vscode-json",
+        "DavidAnson.vscode-markdownlint",
+        "streetsidesoftware.code-spell-checker",
+        "ms-vscode.hexeditor",
+        "ms-vscode.vscode-embedded-tools",
+        "ms-vscode-remote.remote-containers"
+    ]
+}

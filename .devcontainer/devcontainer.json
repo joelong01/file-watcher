@@ -1,0 +1,75 @@
+{
+    "name": "File Watcher Development",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": true,
+            "configureZshAsDefaultShell": true,
+            "installOhMyZsh": true,
+            "upgradePackages": true,
+            "username": "vscode",
+            "userUid": "automatic",
+            "userGid": "automatic"
+        },
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+            "moby": true,
+            "installDockerBuildx": true
+        },
+        "ghcr.io/devcontainers/features/git:1": {
+            "ppa": true,
+            "version": "latest"
+        },
+        "ghcr.io/devcontainers/features/node:1": {
+            "nodeGypDependencies": true,
+            "version": "lts"
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "rust-lang.rust-analyzer",
+                "vadimcn.vscode-lldb",
+                "serayuzgur.crates",
+                "tamasfe.even-better-toml",
+                "ms-vscode.vscode-json",
+                "DavidAnson.vscode-markdownlint",
+                "streetsidesoftware.code-spell-checker",
+                "ms-vscode.hexeditor",
+                "ms-vscode.vscode-embedded-tools"
+            ],
+            "settings": {
+                "rust-analyzer.checkOnSave.command": "clippy",
+                "rust-analyzer.cargo.features": "all",
+                "rust-analyzer.procMacro.enable": true,
+                "editor.formatOnSave": true,
+                "editor.codeActionsOnSave": {
+                    "source.fixAll": "explicit",
+                    "source.organizeImports": "explicit"
+                },
+                "markdownlint.config": {
+                    "MD041": false,
+                    "MD033": false
+                },
+                "files.trimTrailingWhitespace": true,
+                "files.insertFinalNewline": true,
+                "files.trimFinalNewlines": true
+            }
+        }
+    },
+    "postCreateCommand": "rustup component add clippy rustfmt && cargo --version",
+    "remoteUser": "vscode",
+    "mounts": [
+        "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+    ],
+    "runArgs": [
+        "--cap-add=SYS_PTRACE",
+        "--security-opt",
+        "seccomp=unconfined"
+    ],
+    "forwardPorts": [],
+    "portsAttributes": {},
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+    "workspaceFolder": "/workspace"
+}

@@ -1,0 +1,53 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug fw",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=fw",
+                    "--package=fw"
+                ],
+                "filter": {
+                    "name": "fw",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "sourceLanguages": [
+                "rust"
+            ]
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug fw collect",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=fw",
+                    "--package=fw"
+                ],
+                "filter": {
+                    "name": "fw",
+                    "kind": "bin"
+                }
+            },
+            "args": [
+                "collect",
+                "--extensions",
+                "rs,md,toml"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "sourceLanguages": [
+                "rust"
+            ]
+        }
+    ]
+}

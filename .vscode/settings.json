@@ -1,0 +1,34 @@
+{
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "rust-analyzer.cargo.features": "all",
+    "rust-analyzer.procMacro.enable": true,
+    "rust-analyzer.imports.granularity.group": "module",
+    "rust-analyzer.imports.prefix": "crate",
+    "editor.formatOnSave": true,
+    "editor.rulers": [
+        80
+    ],
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 80,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.organizeImports": "explicit"
+    },
+    "markdownlint.config": {
+        "MD041": false,
+        "MD033": false,
+        "MD013": {
+            "line_length": 80
+        }
+    },
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "search.exclude": {
+        "**/target": true,
+        "**/Cargo.lock": true
+    },
+    "files.watcherExclude": {
+        "**/target/**": true
+    }
+}

@@ -1,8 +1,6 @@
 {
     "name": "File Watcher Development",
-    "build": {
-        "dockerfile": "Dockerfile"
-    },
+    "image": "mcr.microsoft.com/devcontainers/rust:1-bullseye",
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2": {
             "installZsh": true,
@@ -50,8 +48,7 @@
                 },
                 "markdownlint.config": {
                     "MD041": false,
-                    "MD033": false,
-                    "MD013": false
+                    "MD033": false
                 },
                 "files.trimTrailingWhitespace": true,
                 "files.insertFinalNewline": true,
@@ -59,12 +56,13 @@
             }
         }
     },
-    "postCreateCommand": ".devcontainer/setup.sh",
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libbpf-dev bpftrace bpfcc-tools clang llvm && rustup component add clippy rustfmt && rustup target add bpfel-unknown-none",
     "remoteUser": "vscode",
     "mounts": [
         "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
     ],
     "runArgs": [
+        "--platform=linux/amd64",
         "--cap-add=SYS_PTRACE",
         "--security-opt",
         "seccomp=unconfined"

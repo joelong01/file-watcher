@@ -1,0 +1,5 @@
+[package]
+name = "fw-common"
+version = "0.1.0"
+edition = "2021"
+description = "Shared definitions for fw eBPF file watcher"

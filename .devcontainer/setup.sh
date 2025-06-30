@@ -14,6 +14,12 @@ echo "🚀 Starting devcontainer setup..."
 echo "📦 Installing Rust components..."
 rustup component add clippy rustfmt
 
+# Install eBPF target for cross-platform development
+echo "🎯 Installing eBPF target..."
+if ! rustup target list --installed | grep -q "bpfel-unknown-none"; then
+    rustup target add bpfel-unknown-none || echo "⚠️  eBPF target not available for this architecture"
+fi
+
 # Verify Rust installation
 echo "🔧 Verifying Rust installation..."
 cargo --version
@@ -72,3 +78,5 @@ echo "  cargo run -- --help"
 echo "  cargo run -- collect --extensions rs,md"
 echo ""
 echo "Happy coding! 🦀"
+
+

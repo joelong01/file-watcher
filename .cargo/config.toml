@@ -1,0 +1,14 @@
+# Cross-compilation configuration for eBPF on ARM64 hosts
+[target.bpfel-unknown-none]
+linker = "bpf-linker"
+
+[target.x86_64-unknown-linux-gnu]
+linker = "x86_64-linux-gnu-gcc"
+
+# Environment variables for eBPF compilation
+[env]
+# Force x86_64 target for eBPF when building on ARM64
+BPF_TARGET_ARCH = "x86_64"
+
+# Alternative: Use system clang for eBPF compilation
+# CLANG_PATH = "/usr/bin/clang"

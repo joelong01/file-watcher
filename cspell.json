@@ -2,6 +2,7 @@
     "version": "0.2",
     "language": "en",
     "words": [
+
         "addon",
         "addons",
         "Anson",
@@ -257,7 +258,9 @@
         "node_modules/**",
         ".git/**",
         "*.min.js",
-        "*.min.css"
+        "*.min.css",
+        "**/*.rs",
+        "Cargo.toml"
     ],
     "enabledLanguageIds": [
         "markdown",

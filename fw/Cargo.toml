@@ -1,0 +1,72 @@
+[package]
+name = "fw"
+version = "0.1.0"
+edition = "2021"
+description = "A command-line file monitoring tool using eBPF"
+authors = ["joelong01"]
+license = "MIT"
+repository = "https://github.com/joelong01/file-watcher"
+readme = "../README.md"
+
+[[bin]]
+name = "fw"
+path = "src/main.rs"
+
+[features]
+# Default features for production
+default = ["ebpf"]
+
+# eBPF monitoring (disable for development on incompatible platforms)
+ebpf = ["aya", "aya-log"]
+
+# Mock implementation for testing and development
+mock = []
+
+[dependencies]
+# CLI argument parsing
+clap = { version = "4.4", features = ["derive", "cargo"] }
+
+# eBPF support - Alternative approaches
+# Option A: Pure Aya (current)
+aya = { version = "0.12", features = ["async_tokio"], optional = true }
+aya-log = { version = "0.2", optional = true }
+
+# Option B: Alternative - libbpf-rs (uncomment if Aya fails)
+# libbpf-rs = "0.22"
+# libbpf-cargo = "0.22"
+
+# Option C: Alternative - bcc bindings (uncomment if others fail)  
+# bcc = "0.0.32"
+bytes = "1.5"
+
+# Shared definitions
+fw-common = { path = "../fw-common" }
+
+# Async runtime for handling events
+tokio = { version = "1.0", features = ["full"] }
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Logging
+env_logger = "0.10"
+log = "0.4"
+
+# Time handling
+chrono = { version = "0.4", features = ["serde"] }
+
+# Signal handling for Ctrl+C
+signal-hook = "0.3"
+signal-hook-tokio = { version = "0.3", features = ["futures-v0_3"] }
+
+# System utilities
+nix = { version = "0.27", features = ["user"] }
+
+[dev-dependencies]
+# Testing utilities
+tempfile = "3.8"
+
+# Build-time dependencies for eBPF compilation
+[build-dependencies]
+aya-build = "0.1"
